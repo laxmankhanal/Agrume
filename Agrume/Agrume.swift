@@ -164,29 +164,29 @@ public final class Agrume: UIViewController {
 
   private var backgroundSnapshot: UIImage!
   private var backgroundImageView: UIImageView!
-  fileprivate var _blurContainerView: UIView?
+  fileprivate var newBlurContainerView: UIView?
   fileprivate var blurContainerView: UIView {
-    if _blurContainerView == nil {
+    if newBlurContainerView == nil {
       let view = UIView(frame: self.view.frame)
       view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
       view.backgroundColor = backgroundColor ?? .clear
-      _blurContainerView = view
+      newBlurContainerView = view
     }
-    return _blurContainerView!
+    return newBlurContainerView!
   }
-  fileprivate var _blurView: UIVisualEffectView?
+  fileprivate var newBlurView: UIVisualEffectView?
   private var blurView: UIVisualEffectView {
-    if _blurView == nil {
+    if newBlurView == nil {
       let blurView = UIVisualEffectView(effect: UIBlurEffect(style: self.backgroundBlurStyle!))
       blurView.frame = self.view.frame
       blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-      _blurView = blurView
+      newBlurView = blurView
     }
-    return _blurView!
+    return newBlurView!
   }
-  fileprivate var _collectionView: UICollectionView?
+  fileprivate var newCollectionView: UICollectionView?
   fileprivate var collectionView: UICollectionView {
-    if _collectionView == nil {
+    if newCollectionView == nil {
       let layout = UICollectionViewFlowLayout()
       layout.minimumInteritemSpacing = 0
       layout.minimumLineSpacing = 0
@@ -201,21 +201,21 @@ public final class Agrume: UIViewController {
       collectionView.backgroundColor = .clear
       collectionView.delaysContentTouches = false
       collectionView.showsHorizontalScrollIndicator = false
-      _collectionView = collectionView
+      newCollectionView = collectionView
     }
-    return _collectionView!
+    return newCollectionView!
   }
-  fileprivate var _spinner: UIActivityIndicatorView?
+  fileprivate var newSpinner: UIActivityIndicatorView?
   fileprivate var spinner: UIActivityIndicatorView {
-    if _spinner == nil {
+    if newSpinner == nil {
       let activityIndicatorStyle: UIActivityIndicatorViewStyle = self.backgroundBlurStyle == .dark ? .whiteLarge : .gray
       let spinner = UIActivityIndicatorView(activityIndicatorStyle: activityIndicatorStyle)
       spinner.center = self.view.center
       spinner.startAnimating()
       spinner.alpha = 0
-      _spinner = spinner
+      newSpinner = spinner
     }
-    return _spinner!
+    return newSpinner!
   }
   fileprivate var downloadTask: URLSessionDataTask?
 
@@ -533,13 +533,13 @@ extension Agrume: AgrumeCellDelegate {
   }
   
   private func cleanup() {
-    _blurContainerView?.removeFromSuperview()
-    _blurContainerView = nil
-    _blurView = nil
-    _collectionView?.removeFromSuperview()
-    _collectionView = nil
-    _spinner?.removeFromSuperview()
-    _spinner = nil
+    newBlurContainerView?.removeFromSuperview()
+    newBlurContainerView = nil
+    newBlurView = nil
+    newCollectionView?.removeFromSuperview()
+    newCollectionView = nil
+    newSpinner?.removeFromSuperview()
+    newSpinner = nil
   }
 
   func dismissAfterFlick() {
